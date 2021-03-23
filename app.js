@@ -75,8 +75,9 @@ function filterPosts(e) {
 
 filter.addEventListener('focus', filterPosts);
 
-document.onkeydown = checkKey;
 
+// key function
+document.onkeydown = checkKey;
 function checkKey(e) {
 
   const elementn = 0;
@@ -86,7 +87,7 @@ function checkKey(e) {
     if (e.keyCode == '13') {
         // enter
         filter.value = filterArr[selectedEl];
-        // dropdown.classList.remove("show");
+        dropdown.classList.remove("show");
         console.log(elementl);
     }
 
