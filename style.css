@@ -49,6 +49,8 @@
 
   
 
-  .overview-container a:hover {background-color: #fff;}
+  .overview-container a:hover {
+    background-color: #fff;
+  }
 
   .show {display: block;}

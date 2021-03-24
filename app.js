@@ -12,6 +12,7 @@ let filterArr = [];
 let idHolderArr = [];
 let selectedEl = 0;
 
+
 // create an element for dropdown
 function createEl(){
   for(let i = 0; i < dropdownArr.length; i++){
@@ -69,7 +70,12 @@ function filterPosts(e) {
         }  
     });
   }
-  console.log(filterArr);
+  // background wird farblich zurück gesetzt und die zeile wird farblich makiert
+  console.log(filterArr +  " = filter");
+  links.forEach(link => {
+    link.style.backgroundColor = "#f1f1f1";
+});
+document.getElementById(`stadt${filterArr[selectedEl]}`).style.backgroundColor = "lightblue";
   
 }
 
@@ -83,69 +89,62 @@ function checkKey(e) {
   const elementn = 0;
   const elementl = filterArr.length -1;
   
-    
+     if (e.keyCode == '8') {
+        // back
+        // dropdown liste wird gezeigt wenn sie aus ist
+        if(dropdown.classList.contains("show") === false){
+          dropdown.classList.add("show");
+        }
+        // index array wird auf 0 gesetzt
+        selectedEl = 0;
+        
+        
+    }
+  
     if (e.keyCode == '13') {
         // enter
         filter.value = filterArr[selectedEl];
         dropdown.classList.remove("show");
-        console.log(elementl);
+        
     }
 
     if (e.keyCode == '40') {
         // down arrow
         if(selectedEl >= elementl){
           selectedEl = elementl;
-          console.log("gleich")
         }else{
           selectedEl++
-          console.log("gibt plus " + selectedEl);
         }
-
-        console.log(elementl);
     }
     
     if (e.keyCode == '38') {
         // up arrow
         if(selectedEl <= elementn){
           selectedEl = elementn;
-          console.log("gleich")
         }else{
           selectedEl--;
-          console.log("gibt minus" + selectedEl);
         }
-  }
-
-  if(document.getElementById(`stadt${filterArr[selectedEl]}`) === null){
-    document.getElementById(`stadt${filterArr[0]}`).style.backgroundColor = "lightblue";
-  }else{
-    links.forEach(link => {
-      link.style.backgroundColor = "#f1f1f1";
-  });
-
-  document.getElementById(`stadt${filterArr[selectedEl]}`).style.backgroundColor = "lightblue";
-  }
-
-  
+    }
+  // background wird farblich zurück gesetzt und die zeile wird farblich makiert
+  links.forEach(link => {
+    link.style.backgroundColor = "#f1f1f1";
+});
+document.getElementById(`stadt${filterArr[selectedEl]}`).style.backgroundColor = "lightblue";
+console.log(selectedEl);
+console.log(filterArr[selectedEl]);
+console.log(filterArr);
 };
 
 
-/*
-  erste elemetn = 0
-  wenn pfeil runter elemtn + 1
-  wenn element > filterArr.length ansonsten +1
-
-  wenn pfeil rauf dann element - 1
-  wenn element <= 0 ansonsten - 1
-
-  var selectedElement
-  bei enter input text = filterArr[selectedElement]
-  filterArr.length = länge des arrays
-
-*/
 
 // toggle dropdown
 function dropdownFunction(){
   dropdown.classList.add("show");
+  links.forEach(link => {
+    link.style.backgroundColor = "#f1f1f1";
+});
+  document.getElementById(`stadt${filterArr[0]}`).style.backgroundColor = "lightblue";
+  selectedEl = 0;
 }
 
 // close dropdown list by clicking outside the dropdown
